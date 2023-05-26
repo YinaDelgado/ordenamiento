@@ -30,6 +30,8 @@ namespace ordenamientoMil
 
         public void BubbleSort(ref int[] arreglo, ref Button[] arreglo_Numeros)
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             for (int i = 0; i < arreglo.Length; i++)
             {
                 for (int j = 0; j < arreglo.Length - 1; j++)
@@ -43,6 +45,25 @@ namespace ordenamientoMil
                         arreglo[j + 1] = aux;
                     }
                 }
+            }
+             stopwatch.Stop();
+            TimeSpan tiempoTranscurrido = stopwatch.Elapsed;
+            MessageBox.Show("El ordenamiento tomó " + tiempoTranscurrido.TotalMilliseconds + " ms.");
+        }
+        public void InsertionSort(ref int[] arreglo, ref Button[] arreglo_Numeros)
+        {
+            for (int i = 0; i < arreglo.Length; i++)
+            {
+                int temp = arreglo[i];
+                int j = i - 1;
+
+                while ((j >= 0) && (arreglo[j] > temp))
+                {
+                    arreglo[j + 1] = arreglo[j];
+                    j--;
+                }
+
+                arreglo[j + 1] = temp;
             }
         }
 
@@ -58,7 +79,7 @@ namespace ordenamientoMil
             }
             catch
             {
-                MessageBox.Show("Solo se admiten n�meros enteros");
+                MessageBox.Show("Solo se admiten números enteros");
             }
             estado = true;
             tabPage1.Refresh();
